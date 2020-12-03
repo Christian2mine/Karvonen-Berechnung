@@ -1,5 +1,7 @@
 {
   "name": "Karvonen-Berechnung",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

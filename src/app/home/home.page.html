@@ -1,20 +1,38 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>
-      Blank
+      Startseite
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content [fullscreen]="true" >
+  <ion-item>
+  <h2>Füllen Sie folgende Felder aus:</h2>
+</ion-item>
+  <ion-item>
+    <ion-label class="halfscreen">Maximale Herzfrequenz:</ion-label>
+    <ion-input min=10 type="number" [(ngModel)]="maxfrequenz" placeholder="ganze Zahlen" class="halfscreen"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed class="halfscreen">Ruhepuls:</ion-label>
+    <ion-input min=10 type="number" [(ngModel)]="ruhepuls" placeholder="ganze Zahlen" class="halfscreen"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="halfscreen">Trainingsart:</ion-label>
+    <ion-select multiple="false"  [(ngModel)]="trainingsart" class="halfscreen" [value]="['intensiv']">
+      <ion-select-option value="intensiv">intensiv</ion-select-option>
+      <ion-select-option value="extensiv">extensiv</ion-select-option>
+      <ion-select-option value="untrainiert">untrainiert</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed class="drei">Kommentar</ion-label>
+    <ion-input type="text" [(ngModel)]="kommentar" class="sieben"></ion-input>
+  </ion-item>
+<ion-button (click)="navigiereErgebnis()">Ergänze</ion-button>
+  <ion-button routerLink="/ergebnis" routerDirection="forward">Gehe zur Ergebnis-Seite</ion-button>
 </ion-content>

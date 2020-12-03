@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
+import { IonicStorageModule } from '@ionic/Storage';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
 
 @NgModule({
   imports: [
+    IonicStorageModule,
     CommonModule,
     FormsModule,
     IonicModule,

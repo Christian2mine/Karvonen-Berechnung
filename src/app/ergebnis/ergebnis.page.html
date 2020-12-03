@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ergebnis-Seite</ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content>
+  <ion-item>
+  <h1 >Bei folgenden Trainingsdaten:</h1>
+</ion-item>
+<ion-item>
+  <h3 >Ruhepuls: {{ergebnisService.getRuhepuls()}}</h3>
+</ion-item>
+<ion-item>
+  <h3 >Maximale Herzfrequenz: {{ergebnisService.getMaxpuls()}}</h3>
+</ion-item>
+  <ion-item>
+  <h3 >Trainingsart: {{ergebnisService.getTrainingsart()}}</h3>
+</ion-item>
+  <ion-item>
+  <h1 >beträgt die optimale Trainingsfrequenz: {{myVariable}}</h1>
+</ion-item>
+
+</ion-content> 
