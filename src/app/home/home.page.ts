@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import{ErgebnisService}from'../ergebnis.service';
 import { AlertController, NavController} from '@ionic/angular';
 import { StorageService , Item } from '../storage.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -12,13 +13,15 @@ import { StorageService , Item } from '../storage.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  maxfrequenz;
+   maxfrequenz;
   ruhepuls;
   trainingsart;
   kommentar;
   items: Item[] = [];
   newItem: Item =<Item>{};
-  constructor(private storageService : StorageService, private ergebnisService : ErgebnisService,private alertController : AlertController, private router : Router, private nav : NavController) {}
+  constructor(private toastController: ToastController, private storageService : StorageService, private ergebnisService : ErgebnisService,private alertController : AlertController, private router : Router, private nav : NavController) {
+    
+  }
   async zeigeDialog(nachricht:string){
     const alert = 
       await this.alertController.create({
@@ -30,16 +33,21 @@ export class HomePage {
       await alert.present();
   }
   navigiereErgebnis(){
-    this.newItem.kommentar=this.kommentar;
-    this.newItem.ruhepuls=this.ruhepuls;
-    this.newItem.maxpuls=this.maxfrequenz;
-    this.newItem.trainingsart=this.trainingsart;
-    this.addItem();
-    this.ergebnisService.setRuhepuls(this.ruhepuls);
-    this.ergebnisService.setmaxpuls(this.maxfrequenz);
-    this.ergebnisService.setTrainingsart(this.trainingsart);
-    this.ergebnisService.setKommentar(this.kommentar);
-    this.nav.navigateForward("/ergebnis");
+    if(this.ruhepuls>=this.maxfrequenz||this.ruhepuls==null||this.maxfrequenz==null||this.kommentar==null||this.trainingsart==null){
+      this.presentToast();
+    }else{
+      this.newItem.datum=new Date(Date.now()).toLocaleString();
+      this.newItem.kommentar=this.kommentar;
+      this.newItem.ruhepuls=this.ruhepuls;
+      this.newItem.maxpuls=this.maxfrequenz;
+      this.newItem.trainingsart=this.trainingsart;
+      this.addItem();
+      this.ergebnisService.setRuhepuls(this.ruhepuls);
+      this.ergebnisService.setmaxpuls(this.maxfrequenz);
+      this.ergebnisService.setTrainingsart(this.trainingsart);
+      this.ergebnisService.setKommentar(this.kommentar);
+      this.nav.navigateForward("/ergebnis");
+    }
   }
   addItem(){
     this.newItem.id=Date.now();
@@ -48,5 +56,12 @@ export class HomePage {
       this.newItem = <Item>{};
     })
     
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Eingaben fehlerhaft! Bitte bearbeiten Sie die Eingabe!',
+      duration: 2000
+    });
+    toast.present();
   }
 }

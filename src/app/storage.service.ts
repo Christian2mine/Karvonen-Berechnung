@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 
 export interface Item {
   id          : number,
+  datum       : string,
   ruhepuls    : number,
   maxpuls     : number,
   trainingsart: string,

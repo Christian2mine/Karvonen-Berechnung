@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hilfe.page.scss'],
 })
 export class HilfePage implements OnInit {
-
+  src="gifs/test.png";
   constructor() { }
 
   ngOnInit() {

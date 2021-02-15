@@ -11,17 +11,11 @@
 <ion-content>
   <ion-list>
     <ion-list-header>
-      <ion-label>alte Suche</ion-label>
+      <h1>Alte Suchen:</h1>
     </ion-list-header>
     <ion-item-sliding *ngFor="let item of items">
       <ion-item>
-        <ion-label text-wrap>
-          <h3>{{item.ruhepuls}}</h3>
-          <ion-text color="secondary">
-            <p>{{item.maxpuls}}</p>
-          </ion-text>
-          <p>{{item.trainingsart}}</p>
-        </ion-label>
+        <p>Datum: {{item.datum}}<br>Ruhepuls: {{item.ruhepuls}}<br>Maximaler Puls: {{item.maxpuls}}<br>Trainingsart: {{item.trainingsart}}<br>Kommentar: {{item.kommentar}}</p>
       </ion-item>
 
       <ion-item-options side="end">
@@ -30,3 +24,4 @@
     </ion-item-sliding>
    </ion-list>
 </ion-content>
+
