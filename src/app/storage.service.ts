@@ -7,6 +7,7 @@ export interface Item {
   ruhepuls    : number,
   maxpuls     : number,
   trainingsart: string,
+  ergebnis    : string,
   kommentar   : string,
 }
 

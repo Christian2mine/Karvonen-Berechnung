@@ -36,6 +36,17 @@ export class HomePage {
     if(this.ruhepuls>=this.maxfrequenz||this.ruhepuls==null||this.maxfrequenz==null||this.kommentar==null||this.trainingsart==null){
       this.presentToast();
     }else{
+      switch(this.ergebnisService.getTrainingsart()){
+        case "intensiv":
+          this.newItem.ergebnis=((this.maxfrequenz-this.ruhepuls)*0.8)+this.ruhepuls;
+          break;
+        case "extensiv":
+          this.newItem.ergebnis=((this.maxfrequenz-this.ruhepuls)*0.6)+this.ruhepuls;
+          break;
+        case "untrainiert":
+          this.newItem.ergebnis=((this.maxfrequenz-this.ruhepuls)*0.5)+this.ruhepuls;
+          break;
+      }
       this.newItem.datum=new Date(Date.now()).toLocaleString();
       this.newItem.kommentar=this.kommentar;
       this.newItem.ruhepuls=this.ruhepuls;
